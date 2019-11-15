@@ -26,7 +26,7 @@ async function scrapePlaces(places) {
 }
 
 async function scrapeUberPrice(place) {
-    const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
 
     await page.goto('https://uberestimator.com/');
