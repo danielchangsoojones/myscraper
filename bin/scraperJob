@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+var Scraper = require('../scraperScheduler');
+Scraper.runScraperScheduler();
+

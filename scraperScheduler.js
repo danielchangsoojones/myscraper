@@ -2,7 +2,6 @@ exports.runScraperScheduler = function runScraperScheduler() {
      runScrapes();
 }
 
-runScrapes();
 function runScrapes() {
     runScraper();
     runAgainInFiveMinutes();
