@@ -20,7 +20,8 @@ async function scrapePlaces(places) {
         var place = places[i];
         await scrapeUberPrice(place).then(function(result) {
             //save the result to my parse database
-            console.log(result);
+            var Save = require('./saveRidesharePrice');
+            Save.saveRidesharePrice(result.current_uber_price, place.normal_uber_price, place.box_identifier);
         })
     }
 }
