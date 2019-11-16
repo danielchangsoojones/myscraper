@@ -6,7 +6,7 @@ exports.runGiantScrape = function runGiantScrape() {
     })
 }
 
-exports.runGiantScrape();
+// exports.runGiantScrape();
 
 function getPlaces() {
     var promise = new Promise(function(resolve, reject) {
