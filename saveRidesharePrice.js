@@ -4,8 +4,6 @@ exports.saveRidesharePrice = function saveRidesharePrice(current_uber_price, nor
     saveWithAPICall(multiplier, box_identifier);
 }
 
-exports.saveRidesharePrice(10, 9, "hi");
-
 function calcMultiplier(current_uber_price, normal_uber_price) {
     var multiplier = 1;
     if (normal_uber_price != 0 && current_uber_price != undefined) {

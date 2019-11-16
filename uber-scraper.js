@@ -6,6 +6,8 @@ exports.runGiantScrape = function runGiantScrape() {
     })
 }
 
+exports.runGiantScrape();
+
 function getPlaces() {
     var promise = new Promise(function(resolve, reject) {
         var Places = require('./uberPlaces');
@@ -20,8 +22,9 @@ async function scrapePlaces(places) {
         var place = places[i];
         await scrapeUberPrice(place).then(function(result) {
             //save the result to my parse database
+            console.log(result);
             var Save = require('./saveRidesharePrice');
-            Save.saveRidesharePrice(result.current_uber_price, place.normal_uber_price, place.box_identifier);
+            Save.saveRidesharePrice(result.current_uber_price, place.normal_price, place.box_identifier);
         })
     }
 }
@@ -132,7 +135,13 @@ async function scrapeUberPrice(place) {
 
         const result = await page.evaluate(() => {
             let priceElement = document.querySelector("body > div > div.row > div:nth-child(1) > ul > li:nth-child(1)");
-            return priceElement.innerHTML;
+            var priceStr = "$0"
+            
+            if (priceElement != null) {
+                priceStr = priceElement.innerHTML;
+            }
+            
+            return priceStr;
         });
     
         await browser.close();
