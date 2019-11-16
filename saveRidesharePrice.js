@@ -18,10 +18,11 @@ function calcMultiplier(current_uber_price, normal_uber_price) {
 function saveWithAPICall(multiplier, box_identifier) {
     const https = require('https');
 
-    var url = "https://btown-rides-development.herokuapp.com/parse?";
+    var url = "https://btown-rides-development.herokuapp.com/hackyPrice?";
     url += "multiplier=" + multiplier;
     url += "&box_identifier=" + box_identifier;
 
+    console.log(url);
 
     https.get(url, (resp) => {
     let data = '';
@@ -33,7 +34,7 @@ function saveWithAPICall(multiplier, box_identifier) {
 
     // The whole response has been received. Print out the result.
     resp.on('end', () => {
-        console.log(JSON.parse(data).explanation);
+        console.log(data);
     });
 
     }).on("error", (err) => {
