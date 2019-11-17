@@ -1,7 +1,7 @@
 
 exports.saveRidesharePrice = function saveRidesharePrice(current_uber_price, normal_uber_price, box_identifier) {
     var multiplier = calcMultiplier(current_uber_price, normal_uber_price);
-    saveWithAPICall(multiplier, box_identifier);
+    saveWithAPICall(multiplier, box_identifier, normal_uber_price, current_uber_price);
 }
 
 function calcMultiplier(current_uber_price, normal_uber_price) {
@@ -13,12 +13,14 @@ function calcMultiplier(current_uber_price, normal_uber_price) {
     return multiplier;
 }
 
-function saveWithAPICall(multiplier, box_identifier) {
+function saveWithAPICall(multiplier, box_identifier, normal_uber_price, current_uber_price) {
     const https = require('https');
 
     var url = "https://btown-rides-development.herokuapp.com/hackyPrice?";
     url += "multiplier=" + multiplier;
     url += "&box_identifier=" + box_identifier;
+    url += "&normal_price=" + normal_uber_price;
+    url += "&current_price=" + current_uber_price;
 
     console.log(url);
 
